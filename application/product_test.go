@@ -58,3 +58,35 @@ func TestProduct_IsValid(t *testing.T) {
 	_, err = product.IsValid()
 	require.Equal(t, "the price must be zero or greater", err.Error())
 }
+
+func TestProduct_GetID(t *testing.T) {
+	product := application.Product{}
+	product.ID = uuid.NewV4().String()
+
+	result := product.GetID()
+	require.Equal(t, product.ID, result)
+}
+
+func TestProduct_GetName(t *testing.T) {
+	product := application.Product{}
+	product.Name = "Hello"
+
+	result := product.GetName()
+	require.Equal(t, product.Name, result)
+}
+
+func TestProduct_GetStatus(t *testing.T) {
+	product := application.Product{}
+	product.Status = application.ENABLED
+
+	result := product.GetStatus()
+	require.Equal(t, product.Status, result)
+}
+
+func TestProduct_GetPrice(t *testing.T) {
+	product := application.Product{}
+	product.Price = 10
+
+	result := product.GetPrice()
+	require.Equal(t, product.Price, result)
+}

@@ -9,5 +9,6 @@
     "stretchr",
     "uuid",
     "uuidv"
-  ]
+  ],
+  "go.inlayHints.parameterNames": true
 }

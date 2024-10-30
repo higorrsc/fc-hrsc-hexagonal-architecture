@@ -10,5 +10,6 @@
     "uuid",
     "uuidv"
   ],
+  "editor.rulers": [80, 120],
   "go.inlayHints.parameterNames": true
 }

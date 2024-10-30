@@ -18,7 +18,7 @@ func NewProductDb(db *sql.DB) *ProductDb {
 func (p *ProductDb) Get(id string) (application.ProductInterface, error) {
 	var product application.Product
 
-	stmt, err := p.db.Prepare("SELECT id, name, price, status FROM products WHERE id=?")
+	stmt, err := p.db.Prepare("SELECT id, name, price, status FROM products WHERE id=?;")
 	if err != nil {
 		return nil, err
 	}
@@ -32,18 +32,14 @@ func (p *ProductDb) Get(id string) (application.ProductInterface, error) {
 func (p *ProductDb) Save(product application.ProductInterface) (application.ProductInterface, error) {
 	var rows int
 
-	err := p.db.QueryRow("SELECT id FROM products WHERE id = ?", product.GetID()).Scan(&rows)
-	if err != nil {
-		return nil, err
-	}
-
+	p.db.QueryRow("SELECT COUNT(*) FROM products WHERE id = ?", product.GetID()).Scan(&rows)
 	if rows == 0 {
-		_, err = p.create(product)
+		_, err := p.create(product)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		_, err = p.update(product)
+		_, err := p.update(product)
 		if err != nil {
 			return nil, err
 		}

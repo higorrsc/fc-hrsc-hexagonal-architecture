@@ -6,12 +6,12 @@ import (
 	"github.com/higorrsc/fc-hrsc-hexagonal-architecture/application"
 )
 
-func Run(service application.ProductServiceInterface, action string, productId string, productName string, price float64) (string, error) {
+func Run(service application.ProductServiceInterface, action string, productId string, productName string, productPrice float64) (string, error) {
 	var result = ""
 
 	switch action {
 	case "create":
-		product, err := service.Create(productName, price)
+		product, err := service.Create(productName, productPrice)
 		if err != nil {
 			return result, err
 		}

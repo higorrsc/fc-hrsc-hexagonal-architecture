@@ -1,0 +1,26 @@
+### Criará o produto
+POST http://localhost:9000/product HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Testando do REST Client - VS Code",
+    "price": 29.90
+}
+
+### Não criará o produto por erro de conversão de dados
+POST http://localhost:9000/product HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Testando do REST Client - VS Code",
+    "price": "asdf"
+}
+
+### Não criará o produto por regra de negócio
+POST http://localhost:9000/product HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Testando do REST Client - VS Code",
+    "price": -100
+}

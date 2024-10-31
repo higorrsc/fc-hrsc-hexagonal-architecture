@@ -1,5 +1,9 @@
+@baseUrl = http://localhost:9000/product
+@productId = {{createProduct.response.body.ID}}
+
 ### Criará o produto
-POST http://localhost:9000/product HTTP/1.1
+# @name createProduct
+POST {{baseUrl}} HTTP/1.1
 content-type: application/json
 
 {
@@ -8,7 +12,7 @@ content-type: application/json
 }
 
 ### Não criará o produto por erro de conversão de dados
-POST http://localhost:9000/product HTTP/1.1
+POST {{baseUrl}} HTTP/1.1
 content-type: application/json
 
 {
@@ -17,10 +21,16 @@ content-type: application/json
 }
 
 ### Não criará o produto por regra de negócio
-POST http://localhost:9000/product HTTP/1.1
+POST {{baseUrl}} HTTP/1.1
 content-type: application/json
 
 {
     "name": "Testando do REST Client - VS Code",
     "price": -100
 }
+
+### Habilitará o producto caso seja válido
+GET {{baseUrl}}/{{productId}}/enable HTTP/1.1
+
+### Desabilitará o produto caso seja válido
+GET {{baseUrl}}/{{productId}}/disable HTTP/1.1
